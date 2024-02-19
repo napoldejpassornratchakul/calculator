@@ -1,11 +1,12 @@
 from math import log10, sqrt, log,exp
-import tkinter as tk
 import re
-import winsound
+import simpleaudio as sa
+import tkinter as tk
 class CalculatorModel:
 
     def __init__(self):
         self.total_value = ''
+        self.play_obj = None
 
     def expo(self,current_value):
         self.total_value = str(eval(f"{current_value} ** 2"))
@@ -61,13 +62,26 @@ class CalculatorModel:
 
     def invalid_input(self,var,result_label, *args):
         value = var
-
         try:
             eval(value)
+            self.stop_sound()
             result_label.config(foreground='white')
         except SyntaxError:
-            winsound.Beep(1000,100)
+            self.play_sound()
             result_label.config(foreground='red')
+
+    def play_sound(self):
+        # Specify the file path to the WAV file
+        file_path = "Police Siren 3-SoundBible.com-553177907.wav"
+        # Load the WAV file
+        self.wave_obj = sa.WaveObject.from_wave_file(file_path)
+        # Play the sound
+        self.play_obj = self.wave_obj.play()
+
+    def stop_sound(self):
+        if self.play_obj:
+            self.play_obj.stop()  # Stop the currently playing sound
+
 
     def clear(self):
         return "0"

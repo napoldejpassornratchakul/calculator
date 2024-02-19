@@ -23,13 +23,13 @@ class CalculatorUI(tk.Tk):
 
     def init_components(self):
         ##create label and combobox
-        self.result_label = tk.Label(self.display_frame, text = self.get_current_value,anchor = tk.E, bg = "BLUE")
+        self.result_label = tk.Label(self.display_frame, text = self.get_current_value,anchor = tk.E, bg = "BLACK")
         self.selected_advance_op = ttk.Combobox(self, textvariable= self.selected_option)
 
 
         #create button
-        self.keypad = self.create_keypad(self.keys,3)
-        self.op = self.create_keypad(self.op_keys,1)
+        self.keypad = self.create_keypad(self.keys,3,"WHITE")
+        self.op = self.create_keypad(self.op_keys,1,"#FFA500")
 
         self.clear_button = self.create_method_button("CLR",11,self.clear)
         self.del_button = self.create_method_button("DEL",10,self.delete)
@@ -82,7 +82,7 @@ class CalculatorUI(tk.Tk):
 
 
 
-    def create_keypad(self,key,column):
+    def create_keypad(self,key,column,color):
         key_frame = tk.Frame()
         mem_list = len(key) // column
         for j in range(column):
@@ -92,7 +92,7 @@ class CalculatorUI(tk.Tk):
         for i, key_num in enumerate(key):
             col = i % column
             row = i // column
-            button = tk.Button(key_frame, text = key_num)
+            button = tk.Button(key_frame, text = key_num, bg = color,fg = "BLACK")
             button.grid(row=row, column=col, padx=2, pady=1, sticky=tk.NSEW)
             button.grid_columnconfigure(i,weight= 0)
             button.grid_rowconfigure(i,weight = 0)

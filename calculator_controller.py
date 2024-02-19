@@ -31,11 +31,6 @@ class CalculatorController:
         self.view.mainloop()
 
 
-c1 = CalculatorController()
-c1.run()
-
-
-
 
 
 
