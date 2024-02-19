@@ -14,10 +14,8 @@ class CalculatorUI(tk.Tk):
         self.get_current_value = self.current_value.get()
         self.history_result = []
         self.get_selected_option = self.selected_option.get()
-        self.history_frame = None
-        self.history_frame = None
+
         self.display_frame = self.create_display_frame()
-        self.state_history = False
         self.init_components()
 
 
